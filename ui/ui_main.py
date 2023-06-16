@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainuSdPTq.ui'
+## Form generated from reading UI file 'mainqSvQoo.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -143,10 +143,10 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.home_btn)
 
-        self.set_btn = QPushButton(self.frame_3)
-        self.set_btn.setObjectName(u"set_btn")
-        self.set_btn.setMinimumSize(QSize(50, 50))
-        self.set_btn.setStyleSheet(u"QPushButton{\n"
+        self.clear_dat = QPushButton(self.frame_3)
+        self.clear_dat.setObjectName(u"clear_dat")
+        self.clear_dat.setMinimumSize(QSize(50, 50))
+        self.clear_dat.setStyleSheet(u"QPushButton{\n"
 "\n"
 "border:none;\n"
 "\n"
@@ -165,7 +165,7 @@ class Ui_MainWindow(object):
 "}\n"
 "")
 
-        self.verticalLayout_2.addWidget(self.set_btn)
+        self.verticalLayout_2.addWidget(self.clear_dat)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
@@ -505,7 +505,7 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.close_btn.setText("")
         self.home_btn.setText("")
-        self.set_btn.setText("")
+        self.clear_dat.setText("")
         self.label.setText(QCoreApplication.translate("MainWindow", u"Plot Settings", None))
         self.legend_chk.setText(QCoreApplication.translate("MainWindow", u"Legend", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"G =", None))

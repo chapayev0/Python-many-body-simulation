@@ -273,7 +273,7 @@ background-color: rgb(216, 115, 127);
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="set_btn">
+           <widget class="QPushButton" name="clear_dat">
             <property name="minimumSize">
              <size>
               <width>50</width>

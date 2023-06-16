@@ -24,6 +24,10 @@ legend_val = True
 G = 39.478  # Gravitational constant
 dt = 0.001
 
+p_array = np.empty((0, 3))
+v_array = np.empty((0, 3))
+m_array = np.array([])
+labels = []
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -57,7 +61,71 @@ class MainWindow(QMainWindow):
        # self.ui.g_edit.textChanged.connect(self.g_val_change)
         self.ui.home_btn.clicked.connect(self.generate_plot)
         self.ui.set_btn.clicked.connect(self.remove_layout)
+        self.ui.add_btn.clicked.connect(self.add_array_data)
+        self.ui.mass_edit.returnPressed.connect(self.add_array_data)
 
+    def clear_arrays(self):
+
+        global p_array, m_array, v_array, labels
+
+        self.ui.obj_list.clear()
+        p_array = np.empty((0, 3))
+        v_array = np.empty((0, 3))
+        m_array = np.array([])
+        labels = []
+
+        self.ax.cla()
+        self.ax.relim()  # Recalculate the limits
+        self.ax.autoscale_view()
+        self.canvas.draw()
+
+
+
+    def add_array_data(self):
+
+        global p_array, m_array, v_array, labels
+
+        p1 = float(self.ui.pe1.text())
+        p2 = float(self.ui.pe2.text())
+        p3 = float(self.ui.pe3.text())
+
+        p_data = np.array([[p1, p2, p3]])
+
+
+        print(p_data)
+        p_array = np.append(p_array, p_data, axis=0)
+        print(p_array)
+
+        v1 = float(self.ui.ve1.text())
+        v2 = float(self.ui.ve2.text())
+        v3 = float(self.ui.ve3.text())
+
+        v_data = np.array([[v1, v2, v3]])
+
+        print(v_data)
+        v_array = np.append(v_array, p_data, axis=0)
+
+        m = self.ui.mass_edit.text()
+        m_array = np.append(m_array, float(m))
+
+        lbl = self.ui.obj_name.text()
+        labels.append(lbl)
+
+
+        self.ui.obj_list.addItem(lbl)
+
+        self.ui.pe1.clear()
+        self.ui.pe2.clear()
+        self.ui.pe3.clear()
+
+        self.ui.ve1.clear()
+        self.ui.ve2.clear()
+        self.ui.ve3.clear()
+
+        self.ui.mass_edit.clear()
+        self.ui.obj_name.clear()
+
+        print("data added")
 
 
 
@@ -138,6 +206,8 @@ class MainWindow(QMainWindow):
 
     def plot_show(self, legend_val, G, dt):
 
+        global p_array, m_array, v_array, labels
+
         # Create a 3D plot
 
         self.toolbar = NavigationToolbar(self.canvas,self)
@@ -149,38 +219,14 @@ class MainWindow(QMainWindow):
 
 
         # Define the initial conditions (positions, velocities, masses) for the Sun and the planets
-        positions = np.array([[0, 0, 0],  # Sun
-                              [0.387, 0, 0],  # Mercury
-                              [0.723, 0, 0],  # Venus
-                              [1.0, 0, 0],  # Earth
-                              [1.524, 0, 0],  # Mars
-                              [5.203, 0, 0],  # Jupiter
-                              [9.539, 0, 0],  # Saturn
-                              [19.18, 0, 0],  # Uranus
-                              [30.07, 0, 0]])  # Neptune
+        positions = p_array
 
-        velocities = np.array([[0, 0, 0],  # Sun
-                               [0, 12.44, 0],  # Mercury
-                               [0, 10.36, 0],  # Venus
-                               [0, 9.0, 0],  # Earth
-                               [0, 7.64, 0],  # Mars
-                               [0, 5.43, 0],  # Jupiter
-                               [0, 4.29, 0],  # Saturn
-                               [0, 3.02, 0],  # Uranus
-                               [0, 2.48, 0]])  # Neptune
+        velocities = v_array
 
-        masses = np.array([1.0,  # Sun
-                           1.66e-7,  # Mercury
-                           2.45e-6,  # Venus
-                           3.0e-6,  # Earth
-                           3.22e-7,  # Mars
-                           9.55e-4,  # Jupiter
-                           2.85e-4,  # Saturn
-                           4.36e-5,  # Uranus
-                           5.18e-5])  # Neptune
+        masses = m_array
 
         # Celestial body labels
-        labels = ['Sun', 'Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune']
+        labels = labels
 
         # Number of bodies
         num_bodies = len(positions)
