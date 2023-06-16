@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_template import FigureCanvas
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
+import pyautogui
 from matplotlib.figure import Figure
 from mpl_toolkits.mplot3d import Axes3D
 
@@ -53,16 +54,39 @@ class MainWindow(QMainWindow):
 
         #self.plot_show(legend_val, G)
 
+
         #button comands
         self.ui.close_btn.clicked.connect(self.terminate_fun)
         self.ui.maxmize_btn.clicked.connect(self.maxmize_fun)
         self.ui.minimize_btn.clicked.connect(self.minimize_fun)
         self.ui.legend_chk.stateChanged.connect(self.legend_val_change)
-       # self.ui.g_edit.textChanged.connect(self.g_val_change)
         self.ui.home_btn.clicked.connect(self.generate_plot)
-        self.ui.set_btn.clicked.connect(self.remove_layout)
         self.ui.add_btn.clicked.connect(self.add_array_data)
         self.ui.mass_edit.returnPressed.connect(self.add_array_data)
+        self.ui.clear_dat.clicked.connect(self.clear_arrays)
+
+
+
+    def mouse_drag(self):
+
+        frame_geometry = self.geometry()
+        frame_width = frame_geometry.width()
+        frame_height = frame_geometry.height()
+
+        frame_center_x = frame_geometry.x() + frame_width // 2
+        frame_center_y = frame_geometry.y() + frame_height  // 2
+
+
+
+        start_x, start_y = pyautogui.position(frame_center_x, frame_center_y)
+
+        # Calculate the end position by adding the desired drag distance
+        end_x = start_x + 10
+        end_y = start_y + 10
+
+        # Perform the drag action
+        pyautogui.moveTo(start_x, start_y)
+        pyautogui.dragTo(end_x, end_y, duration=1.0)
 
     def clear_arrays(self):
 
@@ -124,6 +148,8 @@ class MainWindow(QMainWindow):
 
         self.ui.mass_edit.clear()
         self.ui.obj_name.clear()
+
+        self.ui.obj_name.setFocus()
 
         print("data added")
 
@@ -297,6 +323,8 @@ class MainWindow(QMainWindow):
         self.ui.plot_top.setLayout(self.lay)
         self.ui.nav_bar.setLayout(self.lay1)
         #self.ui.plot_screen.setVisible(True)
+
+        self.mouse_drag()
 
 
 

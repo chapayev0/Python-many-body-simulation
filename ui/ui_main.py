@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainqSvQoo.ui'
+## Form generated from reading UI file 'mainIWUEoN.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -122,6 +122,10 @@ class Ui_MainWindow(object):
         self.home_btn.setObjectName(u"home_btn")
         self.home_btn.setMinimumSize(QSize(50, 50))
         self.home_btn.setMaximumSize(QSize(50, 50))
+        font1 = QFont()
+        font1.setFamily(u"Ubuntu")
+        font1.setPointSize(9)
+        self.home_btn.setFont(font1)
         self.home_btn.setStyleSheet(u"QPushButton{\n"
 "\n"
 "border:none;\n"
@@ -146,6 +150,9 @@ class Ui_MainWindow(object):
         self.clear_dat = QPushButton(self.frame_3)
         self.clear_dat.setObjectName(u"clear_dat")
         self.clear_dat.setMinimumSize(QSize(50, 50))
+        font2 = QFont()
+        font2.setFamily(u"Ubuntu")
+        self.clear_dat.setFont(font2)
         self.clear_dat.setStyleSheet(u"QPushButton{\n"
 "\n"
 "border:none;\n"
@@ -468,6 +475,9 @@ class Ui_MainWindow(object):
 
         self.plot_top = QFrame(self.plot_screen)
         self.plot_top.setObjectName(u"plot_top")
+        font3 = QFont()
+        font3.setPointSize(11)
+        self.plot_top.setFont(font3)
         self.plot_top.setFrameShape(QFrame.StyledPanel)
         self.plot_top.setFrameShadow(QFrame.Raised)
 
@@ -504,8 +514,8 @@ class Ui_MainWindow(object):
         self.close_btn.setToolTip(QCoreApplication.translate("MainWindow", u"Close", None))
 #endif // QT_CONFIG(tooltip)
         self.close_btn.setText("")
-        self.home_btn.setText("")
-        self.clear_dat.setText("")
+        self.home_btn.setText(QCoreApplication.translate("MainWindow", u"Refresh", None))
+        self.clear_dat.setText(QCoreApplication.translate("MainWindow", u"Clear", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Plot Settings", None))
         self.legend_chk.setText(QCoreApplication.translate("MainWindow", u"Legend", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"G =", None))
