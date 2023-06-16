@@ -1,0 +1,6 @@
+numpy
+matplotlib
+PySide2
+platform
+pyautogui
+requests
