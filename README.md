@@ -29,4 +29,4 @@ A Python-based 3D many-body simulation tool with a graphical user interface (GUI
 
 ```bash
 https://github.com/chapayev0/Python-many-body-simulation.git
-cd many-body-simulator
+cd Python-many-body-simulation
